@@ -68,7 +68,7 @@ bing.list({
 .then(function (res) {
 	 
   if (res.length>0)theScrapings.push({url:res[0].url,word:ele});
-  console.log(theScrapings)
+   
 }).catch(function(err) {
    console.log('err',err);
 })

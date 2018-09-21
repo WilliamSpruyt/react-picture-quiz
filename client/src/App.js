@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import spinpic from './logo.svg'
 import "whatwg-fetch";
 import './App.css';
 import FlyingPicture from './components/flyIngPicture';
 import { Column, Row } from 'simple-flexbox';
 const API_PORT = process.env.PORT;
 const url = "/api";	
+//const url = "http://localhost:3001/api";
  
 
  
@@ -40,7 +42,7 @@ class App extends Component {
       });
   };
   hangmanify(word){
-    console.log(word)
+    
     let answer=[];
     let splitWord=word.split('');
     splitWord.forEach((ele)=>{answer.push((ele===" ")?'/':(Math.random()>0.5)?1:0)});
@@ -68,8 +70,8 @@ class App extends Component {
     return (
       <div className="App">
       <Column horizontal='center'>
-      <Row vertical='center' horizontal='spaced' wrap='true' >
-      <FlyingPicture handleChange={this.handleChange} gameState={this.state.weirdArray[this.state.qNum].gameState} word={this.state.weirdArray[this.state.qNum].word} pic={this.state.weirdArray[this.state.qNum].url}/>
+      <Row vertical='center' horizontal='spaced'  >
+      <FlyingPicture spinpic={spinpic} handleChange={this.handleChange} gameState={this.state.weirdArray[this.state.qNum].gameState} word={this.state.weirdArray[this.state.qNum].word} pic={this.state.weirdArray[this.state.qNum].url}/>
       </Row><div className='score'>{this.state.score}</div></Column></div>
     );
   }
