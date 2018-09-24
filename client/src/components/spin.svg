@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <g fill="none" stroke="#ffffff" >
+          <defs>
+    <filter id="f1" x="0" y="0">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+    </filter>
+  </defs>
+         
+        <path fill="none" stroke-linecap="round" stroke-width="5" d="M 50 50 Q 0 25 50 3 "/>
+        <path  fill="none" stroke-linecap="round"  stroke-width="5" d="M 50 50 Q 75 0 97 50 "/>
+        <path  fill="none" stroke-linecap="round" stroke-width="5" d="M 50 50 Q 100 75 50 97 "/>
+        <path  fill="none"  stroke-linecap="round" stroke-width="5" d="M 50 50 Q 25 100 3 50 "/>
+        <path  fill="none" stroke-linecap="round"  stroke-width="5" d="M 50 50 Q -15 65 18 15 "/>
+        <path fill="none" stroke-linecap="round" stroke-width="5" d="M 50 50 Q 35 -15 85 15 "/>
+        <path fill="none" stroke-linecap="round" stroke-width="5" d="M 50 50 Q 65 115 15 85 "/>
+        <path  fill="none" stroke-linecap="round" stroke-width="5" d="M 50 50 Q 115 35 85 85 "/>
+        
+         
+    </g>
+</svg>

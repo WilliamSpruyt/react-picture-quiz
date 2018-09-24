@@ -1,5 +1,8 @@
  
-theScrapings= []
+theScrapings= [
+  {url: "https://www.slurp-ramen.com/wp-content/uploads/2017/06/hello.png", word: "hello", gameState
+  :
+  [1, 0, 1, 1, 1]}]
 const countries=require("./countries")
 
 
@@ -24,7 +27,8 @@ const router = express.Router();
 
 // set our port to either a predetermined port number if you have set it up, or 3001
 const API_PORT = process.env.PORT || 3001;
-
+var Scraper = require ('images-scraper')
+ , bing = new Scraper.Bing();
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "client/build")));
@@ -35,8 +39,31 @@ app.use(logger("dev"));
 
 // now we can set the route path & initialize the API
 router.get("/", (req, res) => {
+  console.log('nobbage')
+  words.length=0;
   
-  res.json({theScrapings });
+ for(var i=0;i<4;i++){
+  words.push(vocab[Math.floor(Math.random()*vocab.length)]);
+  
+}
+
+
+ words.forEach(function(ele){ 
+bing.list({
+   keyword:ele,
+   num: 1,
+   detail: true
+})
+.then(function (res) {
+	 
+  if (res.length>0)theScrapings.push({url:res[0].url,word:ele});
+   
+}).catch(function(err) {
+   console.log('err',err);
+})
+})
+  if(theScrapings.length>0)res.json({theScrapings });
+  theScrapings.length=0;
 });
  
 
@@ -48,9 +75,8 @@ app.use("/api", router);
  
 app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
 
-var Scraper = require ('images-scraper')
- , bing = new Scraper.Bing();
- setInterval(()=>{
+
+ /*setInterval(()=>{
   words.length=0;
   theScrapings.length=0;
  for(var i=0;i<10;i++){
@@ -72,5 +98,5 @@ bing.list({
 }).catch(function(err) {
    console.log('err',err);
 })
-})},10000)
+})},10000)*/
  

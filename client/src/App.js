@@ -6,8 +6,8 @@ import './App.css';
 import FlyingPicture from './components/flyIngPicture';
 import { Column, Row } from 'simple-flexbox';
 const API_PORT = process.env.PORT;
-const url = "/api";	
-//const url = "http://localhost:3001/api";
+//const url = "/api";	
+const url = "http://localhost:3001/api";
  
 
  
@@ -24,7 +24,8 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    this.loadPicsFromServer();
+   // this.loadPicsFromServer();
+   this.awaitPicsFromServer();
   }
   loadPicsFromServer = () => {
     // fetch returns a promise. If you are not familiar with promises, see
@@ -41,6 +42,22 @@ class App extends Component {
          }
       });
   };
+  awaitPicsFromServer = async () => {
+    const response = await fetch(url)
+    const res = await response.json()
+    console.log(res.theScrapings)
+    if (res.theScrapings.length<1){ this.setState({ error: res.error });console.log('bolls');}
+    else {var theScrapings=res.theScrapings.slice();
+      theScrapings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)})
+      
+      
+      this.setState({ weirdArray: theScrapings })
+     }
+
+  
+  }
+
+  
   hangmanify(word){
     
     let answer=[];
@@ -57,8 +74,14 @@ class App extends Component {
     if(value===wordArr[ind]){
       this.setState({score:this.state.score+1})
       gameTempstate.gameState[ind]=1;
-      
-      this.setState({wierdArray:gameTempstate}, ()=>{if (gameTempstate.gameState.reduce((accumulator, currentValue) => accumulator + currentValue)===gameTempstate.gameState.length)this.setState({qNum:this.state.qNum+1})})
+     // if(this.state.qNum,this.state.weirdArray.length-1){console.log('shittage');this.awaitPicsFromServer()}
+      console.log(this.state.qNum,this.state.weirdArray.length-1)
+      this.setState({wierdArray:gameTempstate},
+         ()=>{if (gameTempstate.gameState.reduce((accumulator, currentValue) => accumulator + currentValue)===gameTempstate.gameState.length)
+          {(this.state.qNum===this.state.weirdArray.length-1)?this.setState({qNum:0},this.awaitPicsFromServer):this.setState({qNum:this.state.qNum+1})}}
+        
+        )
+     
     }
     else{
       
