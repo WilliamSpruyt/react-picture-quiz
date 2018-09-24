@@ -6,8 +6,8 @@ import './App.css';
 import FlyingPicture from './components/flyIngPicture';
 import { Column, Row } from 'simple-flexbox';
 const API_PORT = process.env.PORT;
-//const url = "/api";	
-const url = "http://localhost:3001/api";
+const url = "/api";	
+//const url = "http://localhost:3001/api";
  
 
  
