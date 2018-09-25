@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import spinpic from './logo.svg'
+import spinpic from './spin.svg'
 import "whatwg-fetch";
 import './App.css';
 import FlyingPicture from './components/flyIngPicture';
@@ -59,9 +59,11 @@ class App extends Component {
 
   
   hangmanify(word){
-    
+     
     let answer=[];
     let splitWord=word.split('');
+    if (splitWord.length<5){splitWord.forEach((ele)=>{answer.push(0)});
+    return answer;}
     splitWord.forEach((ele)=>{answer.push((ele===" ")?'/':(Math.random()>0.5)?1:0)});
     return answer;
   }

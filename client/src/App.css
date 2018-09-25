@@ -4,7 +4,21 @@
 
 .App-logo {
   animation: App-logo-spin infinite 2s linear;
-  height: 200px;
+  transform-origin: 50% 50%;
+  width: 200px;
+}
+@keyframes App-logo-spin {
+  from { transform:  rotate(360deg)}
+   
+}
+
+.zApp-logo {
+  animation: App-logo-spin infinite 13s reverse ;
+  transform-origin: 50% 50%;
+}
+@keyframes App-logo-spin {
+  from { transform:  rotate(360deg)}
+   
 }
 
 .small-pic {

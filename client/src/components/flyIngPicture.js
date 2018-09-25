@@ -1,23 +1,33 @@
 import React from "react";
 import Hangman from './hangman'
-import Spinner from './spinner'
+ 
 import "../App.css";
+import ImageLoader from 'react-load-image';
+import Preloader from './preloader';
 
+
+
+ 
+ 
 
 
 export default class FlyingPicture extends React.Component {
   render() {
     return (
         <div className="App-header">
-  { this.props.pic && <img src={this.props.pic} className='small-pic' alt="Image Blocked" /> }
-  { !this.props.pic &&<Spinner pic={this.props.spinpic}/>}
+   <ImageLoader 
+    src={this.props.pic} 
+  >
+    <img className="small-pic" alt=""/>
+    <div>Error!</div>
+    <Preloader spinpic={this.props.spinpic}/>
+  </ImageLoader>
          <Hangman handleChange={this.props.handleChange} word={this.props.word} gameState={this.props.gameState}/>
-
+        
 
   </div>
 
     )}
 
 }
-
 
