@@ -5,6 +5,7 @@ import "whatwg-fetch";
 import './App.css';
 import FlyingPicture from './components/flyIngPicture';
 import { Column, Row } from 'simple-flexbox';
+import { setTimeout } from 'timers';
 const API_PORT = process.env.PORT;
 const url = "/api";	
 //const url = "http://localhost:3001/api";
@@ -19,7 +20,8 @@ class App extends Component {
     this.state = {
      weirdArray:[{pic:logo,word:'balls',gameState:[0]}],
      qNum:0,
-     score:0
+     score:0,
+     scoreClass:"score"
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -68,16 +70,16 @@ class App extends Component {
     return answer;
   }
   handleChange(value,ind){
-    
+    setTimeout( this.setState({scoreClass:'score' }),1000);
     var wordArr=this.state.weirdArray[this.state.qNum].word.split('');
     
     var gameTempstate=this.state.weirdArray[this.state.qNum];
     
-    if(value===wordArr[ind]){
-      this.setState({score:this.state.score+1})
+    if(value.toLowerCase()===wordArr[ind].toLowerCase()){
+      this.setState({score:this.state.score+1,scoreClass:(this.state.scoreClass==='scoreUp')?'scoreUpb':'scoreUp'} )
       gameTempstate.gameState[ind]=1;
-     // if(this.state.qNum,this.state.weirdArray.length-1){console.log('shittage');this.awaitPicsFromServer()}
-      console.log(this.state.qNum,this.state.weirdArray.length-1)
+      
+       
       this.setState({wierdArray:gameTempstate},
          ()=>{if (gameTempstate.gameState.reduce((accumulator, currentValue) => accumulator + currentValue)===gameTempstate.gameState.length)
           {(this.state.qNum===this.state.weirdArray.length-1)?this.setState({qNum:0},this.awaitPicsFromServer):this.setState({qNum:this.state.qNum+1})}}
@@ -87,9 +89,9 @@ class App extends Component {
     }
     else{
       
-      this.setState({score:this.state.score-1})
+      this.setState({score:this.state.score-1,scoreClass:(this.state.scoreClass==='scoreDown')?'scoreDownb':'scoreDown'})
     }
-      
+   
   }
   render() {
     return (
@@ -97,7 +99,7 @@ class App extends Component {
       <Column horizontal='center'>
       <Row vertical='center' horizontal='spaced'  >
       <FlyingPicture spinpic={spinpic} handleChange={this.handleChange} gameState={this.state.weirdArray[this.state.qNum].gameState} word={this.state.weirdArray[this.state.qNum].word} pic={this.state.weirdArray[this.state.qNum].url}/>
-      </Row><div className='score'>{this.state.score}</div></Column></div>
+      </Row><div className={this.state.scoreClass}>{this.state.score}</div></Column></div>
     );
   }
 }

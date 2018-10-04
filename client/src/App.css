@@ -7,7 +7,12 @@
   transform-origin: 50% 50%;
   width: 200px;
 }
+
 @keyframes App-logo-spin {
+  from { transform:  rotate(360deg)}
+   
+}
+@keyframes App-logo-spun {
   from { transform:  rotate(360deg)}
    
 }
@@ -16,8 +21,8 @@
   animation: App-logo-spin infinite 13s reverse ;
   transform-origin: 50% 50%;
 }
-@keyframes App-logo-spin {
-  from { transform:  rotate(360deg)}
+@keyframes App-logo-start {
+  from { transform:  scale(105)}
    
 }
 
@@ -41,10 +46,7 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform:  rotate(360deg)}
-   
-}
+ 
 
 
 body{
@@ -68,5 +70,33 @@ input{
 
 .score{
 
-  font-size: 50px;
+  font-size: 60px;
+  text-align: center;
+  color:greenyellow;
+  animation: App-logo-start .25s linear;
 }
+
+.scoreUp{
+  font-size: 60px;
+  text-align: center;
+  color: green;
+  animation: App-logo-spin .25s linear reverse;
+}
+
+.scoreUpb{
+  font-size: 60px;
+  text-align: center;
+  color: green;
+  animation: App-logo-spun .25s linear reverse;
+}
+.scoreDown{
+  font-size: 60px;
+  text-align: center;
+  color:red;
+  animation: App-logo-spun  .2s linear ;}
+
+  .scoreDownb{
+    font-size: 60px;
+    text-align: center;
+    color:red;
+    animation: App-logo-spin  .2s linear ;}
