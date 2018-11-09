@@ -5,7 +5,7 @@
     :
     [1, 0, 1, 1, 1]}]
     empty= 
-      {url: "https://en.wikipedia.org/wiki/Xylophone#/media/File:Xylophone_(PSF).svg", word: "xylophone", gameState
+      {url: "https://vignette.wikia.nocookie.net/music/images/d/d3/Xylophone.jpg/revision/latest/scale-to-width-down/177?cb=20131026195349", word: "xylophone", gameState
       :
       [1, 0, 1, 1, 1, 0, 1, 1]}
 const countries=require("./countries")

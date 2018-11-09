@@ -69,7 +69,7 @@ class App extends Component {
     
     if (res.theScrapings.length<1){ this.setState({ error: res.error });}
     else {var theScrapings=res.theScrapings.slice();
-      if(theScrapings[0].word==="grinch"){
+      if(theScrapings[0].word==="xylophone"){
         this.setState({qNum:0},this.awaitPicsFromServer); 
         
       } 
