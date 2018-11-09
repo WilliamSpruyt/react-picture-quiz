@@ -5,9 +5,9 @@
     :
     [1, 0, 1, 1, 1]}]
     empty= 
-      {url: "https://www.slurp-ramen.com/wp-content/uploads/2017/06/hello.png", word: "grinch", gameState
+      {url: "https://en.wikipedia.org/wiki/Xylophone#/media/File:Xylophone_(PSF).svg", word: "xylophone", gameState
       :
-      [1, 0, 1, 1, 1]}
+      [1, 0, 1, 1, 1, 0, 1, 1]}
 const countries=require("./countries")
 
 
