@@ -40,7 +40,7 @@ class App extends Component {
           theScrapings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)})
           
           
-          this.setState({ weirdArray: theScrapings })
+          this.setState({ weirdArray: theScrapings },()=>{console.log(this.state.wierdArray)})
          }
       });
   };
@@ -50,10 +50,12 @@ class App extends Component {
     console.log(res.theScrapings)
     if (res.theScrapings.length<1){ this.setState({ error: res.error });console.log('bolls');}
     else {var theScrapings=res.theScrapings.slice();
-      theScrapings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)})
+     var httpsScrappings=theScrapings.filter((ele=>{return ele.url.includes('https')}))
+     console.log(httpsScrappings,theScrapings)
+     httpsScrappings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)})
       
       
-      this.setState({ weirdArray: theScrapings })
+      this.setState({ weirdArray:  httpsScrappings })
      }
 
   
