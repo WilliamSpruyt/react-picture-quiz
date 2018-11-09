@@ -19,7 +19,7 @@ export default class FlyingPicture extends React.Component {
     src={this.props.pic} 
   >
     <img className="small-pic" alt=""/>
-    <div>Error!</div>
+    <div className={"guess"}>GUESS!</div>
     <Preloader spinpic={this.props.spinpic}/>
   </ImageLoader>
          <Hangman handleChange={this.props.handleChange} word={this.props.word} gameState={this.props.gameState}/>

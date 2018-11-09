@@ -7,8 +7,8 @@ import FlyingPicture from './components/flyIngPicture';
 import { Column, Row } from 'simple-flexbox';
 import { setTimeout } from 'timers';
 const API_PORT = process.env.PORT;
-const url = "/api";	
-//const url = "http://localhost:3001/api";
+//const url = "/api";	
+const url = "http://localhost:3001/api";
  
 
  
@@ -35,33 +35,55 @@ class App extends Component {
     fetch(url)
      .then(data => data.json())
       .then(res => {
-        if (!res){ this.setState({ error: res.error });console.log(res);}
+        if (!res){ this.setState({ error: res.error });}
         else {var theScrapings=res.theScrapings.slice();
           theScrapings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)})
           
           
-          this.setState({ weirdArray: theScrapings },()=>{console.log(this.state.wierdArray)})
+          this.setState({ weirdArray: theScrapings })
          }
       });
   };
   awaitPicsFromServer = async () => {
     const response = await fetch(url)
     const res = await response.json()
-    console.log(res.theScrapings)
-    if (res.theScrapings.length<1){ this.setState({ error: res.error });console.log('bolls');}
+   
+    if (res.theScrapings.length<1){ this.setState({ error: res.error });}
     else {var theScrapings=res.theScrapings.slice();
      var httpsScrappings=theScrapings.filter((ele=>{return ele.url.includes('https')}))
-     console.log(httpsScrappings,theScrapings)
-     httpsScrappings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)})
+   
+      
+    httpsScrappings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)});
+     this.setState({ weirdArray:  httpsScrappings })}
       
       
-      this.setState({ weirdArray:  httpsScrappings })
-     }
+      
+      
 
   
   }
 
+  awaitPicsFromServer = async () => {
+    const response = await fetch(url)
+    const res = await response.json()
+    
+    if (res.theScrapings.length<1){ this.setState({ error: res.error });}
+    else {var theScrapings=res.theScrapings.slice();
+      if(theScrapings[0].word==="grinch"){
+        this.setState({qNum:0},this.awaitPicsFromServer); 
+        
+      } 
+      
+      else{
+    theScrapings.forEach((ele)=>{ele.gameState=this.hangmanify(ele.word)});
+     this.setState({ weirdArray: theScrapings })
+      
+      } 
+      
+     }
+
   
+  }
   hangmanify(word){
      
     let answer=[];
@@ -72,7 +94,9 @@ class App extends Component {
     return answer;
   }
   handleChange(value,ind){
+   
     setTimeout( this.setState({scoreClass:'score' }),1000);
+   
     var wordArr=this.state.weirdArray[this.state.qNum].word.split('');
     
     var gameTempstate=this.state.weirdArray[this.state.qNum];

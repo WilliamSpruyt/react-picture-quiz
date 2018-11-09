@@ -1,8 +1,13 @@
  
-theScrapings= [
-  {url: "https://www.slurp-ramen.com/wp-content/uploads/2017/06/hello.png", word: "hello", gameState
-  :
-  [1, 0, 1, 1, 1]}]
+ 
+  theScrapings= [
+    {url: "https://www.slurp-ramen.com/wp-content/uploads/2017/06/hello.png", word: "hello", gameState
+    :
+    [1, 0, 1, 1, 1]}]
+    empty= 
+      {url: "https://www.slurp-ramen.com/wp-content/uploads/2017/06/hello.png", word: "grinch", gameState
+      :
+      [1, 0, 1, 1, 1]}
 const countries=require("./countries")
 
 
@@ -39,31 +44,21 @@ app.use(logger("dev"));
 
 // now we can set the route path & initialize the API
 router.get("/", (req, res) => {
-  console.log('nobbage')
+  
   words.length=0;
   
  for(var i=0;i<4;i++){
   words.push(vocab[Math.floor(Math.random()*vocab.length)]);
   
 }
-
-
- words.forEach(function(ele){ 
-bing.list({
-   keyword:ele,
-   num: 1,
-   detail: true
-})
-.then(function (res) {
-	 
-  if (res.length>0)theScrapings.push({url:res[0].url,word:ele});
-   
-}).catch(function(err) {
-   console.log('err',err);
-})
-})
-  if(theScrapings.length>0)res.json({theScrapings });
-  theScrapings.length=0;
+ 
+wordsBinger(words)
+ 
+if(theScrapings.length>0){res.json({theScrapings }) ;theScrapings.length=0;}
+  else
+  { theScrapings.push(empty);res.json({theScrapings })}
+  
+  
 });
  
 
@@ -100,3 +95,21 @@ bing.list({
 })
 })},10000)*/
  
+function wordsBinger(words){
+  words.forEach(function(ele){ 
+    bing.list({
+       keyword:ele,
+       num: 1,
+       detail: true
+    })
+    .then(function (res) {
+       
+      if (res.length>0 && res[0].url.includes('https'))theScrapings.push({url:res[0].url,word:ele});
+      
+      
+    }).catch(function(err) {
+       console.log('err',err);
+    })
+    })
+
+}

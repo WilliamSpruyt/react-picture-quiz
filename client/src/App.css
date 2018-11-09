@@ -100,3 +100,11 @@ input{
     text-align: center;
     color:red;
     animation: App-logo-spin  .2s linear ;}
+
+  .guess{
+    font-size: 120px;
+    text-align: center;
+    color:purple;
+    animation: App-logo-spin  2s infinite ;
+
+  }
