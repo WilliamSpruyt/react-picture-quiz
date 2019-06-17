@@ -10,8 +10,8 @@ import HangmanPic from "./components/hangmanPic";
 import { Column, Row } from "simple-flexbox";
 import { setTimeout } from "timers";
 const API_PORT = process.env.PORT;
-//const url = "/api";
-const url = "http://localhost:3001/api";
+const url = "/api";
+//const url = "http://localhost:3001/api";
 
 class App extends Component {
   constructor(props) {
