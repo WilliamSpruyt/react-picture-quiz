@@ -12,7 +12,10 @@ HTML{
   transform-origin: 50% 50%;
   width: 200px;
 }
-
+img {
+  max-width:100%;
+  height: auto;
+}
 @keyframes App-logo-spin {
   from { transform:  rotate(360deg)}
    
