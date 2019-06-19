@@ -11,7 +11,7 @@ export default class LetterSquare extends React.Component {
               <rect
                 width={this.props.side}
                 height={this.props.side}
-                
+                stroke="black"
                 strokeWidth="4"
                 fill="silver"
               />

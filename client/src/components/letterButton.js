@@ -28,7 +28,8 @@ export default class LetterButton extends React.Component {
             r={this.props.radius}
             stroke="none"
             strokeWidth="4"
-            fill={(this.props.pressed.indexOf(this.props.letter)===-1) ? this.props.backColour : "silver"}
+            fill={(this.props.pressed.indexOf(this.props.letter)===-1) ? this.props.backColour : "gray"}
+            color={(this.props.pressed.indexOf(this.props.letter)===-1) ? "black" : "silver"}
           />
           <text
             fill="#000000"
@@ -38,6 +39,7 @@ export default class LetterButton extends React.Component {
             fontFamily="Verdana"
             x="25"
             y="25"
+            color={(this.props.pressed.indexOf(this.props.letter)===-1) ? "black" : "silver"}
           >
             {this.props.letter}
           </text>

@@ -1,9 +1,12 @@
 .App {
-  display: flex; /* or inline-flex */
-  flex-direction: column;
+   
   height:100%;
+  background: #222
+   
 }
-
+HTML{
+  background-color: black
+}
 .App-logo {
   animation: App-logo-spin infinite 2s linear;
   transform-origin: 50% 50%;
@@ -30,7 +33,7 @@
 
 .small-pic {
    
- 
+ width:20%
 }
 
 .App-header {
@@ -51,11 +54,10 @@
 
  
 #picAndWord{
+  font-size: 50px;
   display: flex; /* or inline-flex */
   flex-direction: row;
   justify-content:  space-evenly;
-  flex: 2 1 300px;
- 
  
 }
 
@@ -68,8 +70,8 @@ body{
   font-size: 50px;
   display: flex; /* or inline-flex */
   flex-direction: row;
-  justify-content:  space-evenly;
-  flex: 2 1 300px;
+   
+  
  
  
 }
@@ -92,7 +94,7 @@ input{
   text-align: center;
 }
 #FlyingP{
-  flex: 2 1 300px;
+  
 }
 .score{
 
@@ -104,7 +106,8 @@ input{
   border-style: solid;
   margin: 5%;
   border-color: #ccc;
-  background-color: #444
+  background-color: #444;
+  width:50%;
 }
 
 .scoreUp{
@@ -115,7 +118,8 @@ input{
   border-style: solid;
   margin: 5%;
   border-color: #ccc;
-  background-color: #444
+  background-color: #444;
+  width:50%;
 }
 
 .scoreUpb{
@@ -126,7 +130,8 @@ input{
   border-style: solid;
   margin: 5%;
   border-color: #ccc;
-  background-color: #444
+  background-color: #444;
+  width:50%;
 }
 .scoreDown{
   font-size: 60px;
@@ -137,7 +142,9 @@ input{
   border-style: solid;
   margin: 5%;
   border-color: #ccc;
-  background-color: #444}
+  background-color: #444;
+  width:50%;
+}
 
   .scoreDownb{
     font-size: 60px;
@@ -148,7 +155,8 @@ input{
     border-style: solid;
     margin: 5%;
     border-color: #ccc;
-    background-color: #444}
+    background-color: #444;
+    width:50%;}
 
   .guess{
     font-size: 120px;
