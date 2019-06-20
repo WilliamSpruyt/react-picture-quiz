@@ -39,7 +39,7 @@ img {
 .App-header {
   background-color: #222;
   font: em sans-serif;
-  font-size:50px;
+  font-size:2em;
    
   color: white;
 }
@@ -71,8 +71,10 @@ body{
   display: flex; /* or inline-flex */
   flex-direction: row;
   float: none;
-  margin: 0 auto;
+  
   justify-content:center;
+  flex-wrap:wrap;
+  height: auto;
   
 
  
