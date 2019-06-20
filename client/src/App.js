@@ -367,10 +367,10 @@ class App extends Component {
           </Col>
           <Col xs="6" maxWidth="50%">
             {" "}
-            <FlyingPicture
+            {this.state.weirdArray[this.state.qNum] && (  <FlyingPicture
               spinpic={spinpic}
               pic={this.state.weirdArray[this.state.qNum].url}
-            />{" "}
+            />)}{" "}
           </Col>
         </Row>
           <Row>
@@ -396,7 +396,7 @@ class App extends Component {
           </Row>
          
           <Row />
-          <Hangman word={this.state.pressed} gameState={this.state.pressed} />
+         <Hangman word={this.state.pressed} gameState={this.state.pressed} />
         </Container>
       </div>
     );
