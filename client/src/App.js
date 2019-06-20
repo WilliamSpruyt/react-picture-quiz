@@ -8,7 +8,16 @@ import SuccessPicture from "./components/SuccessPicture";
 import Hangman from "./components/hangman";
 import FlyingPicture from "./components/flyIngPicture";
 import HangmanPic from "./components/hangmanPic";
-import { Container, Row, Col } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
+} from "reactstrap";
 
 import Keyboard from "./components/keyboard";
 const API_PORT = process.env.PORT;
@@ -19,47 +28,77 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      ALPHABET: [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
       weirdArray: [{ pic: logo, word: "balls", gameState: [0] }],
       qNum: 0,
       score: 0,
       scoreClass: "score",
-      height: 400,
+      round: 1,
       alphabet: [
-        { letter: "a" },
-        { letter: "b" },
-        { letter: "c" },
-        { letter: "d" },
-        { letter: "e" },
-        { letter: "f" },
-        { letter: "g" },
-        { letter: "h" },
-        { letter: "i" },
-        { letter: "j" },
-        { letter: "k" },
-        { letter: "l" },
-        { letter: "m" },
-        { letter: "n" },
-        { letter: "o" },
-        { letter: "p" },
-        { letter: "q" },
-        { letter: "r" },
-        { letter: "s" },
-        { letter: "t" },
-        { letter: "u" },
-        { letter: "v" },
-        { letter: "w" },
-        { letter: "x" },
-        { letter: "y" },
-        { letter: "z" }
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
       ],
-      pressed: []
+      pressed: [],
+      youLose: false
     };
 
     this.handleLetterPress = this.handleLetterPress.bind(this);
+    this.continue = this.continue.bind(this);
   }
   componentDidMount() {
-    // this.loadPicsFromServer();
-    this.awaitPicsFromServer();
+    this.loadPicsFromServer();
+    // this.awaitPicsFromServer();
     this.updateDimensions();
   }
   componentWillUnmount() {}
@@ -81,50 +120,13 @@ class App extends Component {
         }
       });
   };
-  awaitPicsFromServer = async () => {
-    const response = await fetch(url);
-    const res = await response.json();
 
-    if (res.theScrapings.length < 1) {
-      this.setState({ error: res.error });
-    } else {
-      var theScrapings = res.theScrapings.slice();
-      var httpsScrappings = theScrapings.filter(ele => {
-        return ele.url.includes("https");
-      });
-
-      httpsScrappings.forEach(ele => {
-        ele.gameState = this.hangmanify(ele.word);
-      });
-      this.setState({ weirdArray: httpsScrappings });
-    }
-  };
-
-  awaitPicsFromServer = async () => {
-    const response = await fetch(url);
-    const res = await response.json();
-
-    if (res.theScrapings.length < 1) {
-      this.setState({ error: res.error });
-    } else {
-      var theScrapings = res.theScrapings.slice();
-      if (theScrapings[0].word === "xylophone") {
-        this.setState({ qNum: 0 }, this.awaitPicsFromServer);
-      } else {
-        theScrapings.forEach(ele => {
-          ele.gameState = this.hangmanify(ele.word);
-        });
-        this.setState({ weirdArray: theScrapings });
-      }
-    }
-  };
   updateDimensions() {
     let update_height = Math.round(window.innerHeight);
     this.setState({ height: update_height });
   }
   youLose = () => {
-    alert("you lose");
-    this.setState({ score: 0, qNum: 0 });
+    this.setState({ youLose: true });
   };
   hangmanify(word) {
     let answer = [];
@@ -140,6 +142,79 @@ class App extends Component {
     });
     return answer;
   }
+  continue() {
+    this.setState({
+      youLose: false,
+      round: 1
+    });
+    this.state.qNum === this.state.weirdArray.length - 1
+      ? this.setState({
+          qNum: this.state.qNum + 1,
+          pressed: [],
+          score: 0,
+          alphabet: [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z"
+          ]
+        })
+      : this.setState({
+          qNum: this.state.qNum + 1,
+          pressed: [],
+          score: 0,
+          alphabet: [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z"
+          ]
+        });
+  }
   handleLetterPress(letter) {
     this.setState({ pressed: this.state.pressed.concat(letter) });
 
@@ -151,22 +226,107 @@ class App extends Component {
     wordArr.forEach((ele, ind) => {
       if (ele === letter) {
         gameTempstate.gameState[ind] = ele;
+
         found = true;
       }
     });
 
     this.setState({ wierdArray: gameTempstate }, () => {
       if (gameTempstate.gameState.indexOf(" ") === -1) {
-        this.state.qNum === this.state.weirdArray.length - 1
-          ? this.setState({ qNum: 0, pressed: [] }, this.awaitPicsFromServer)
-          : this.setState({ qNum: this.state.qNum + 1, pressed: [],score:0 });
+        let scope = this;
+
+        setTimeout(function() {
+          scope.state.qNum === scope.state.weirdArray.length - 1
+            ? scope.setState(
+                {
+                  qNum: 0,
+                  round: scope.state.round + 1,
+                  pressed: [],
+                  score: 0,
+                  alphabet: [
+                    "a",
+                    "b",
+                    "c",
+                    "d",
+                    "e",
+                    "f",
+                    "g",
+                    "h",
+                    "i",
+                    "j",
+                    "k",
+                    "l",
+                    "m",
+                    "n",
+                    "o",
+                    "p",
+                    "q",
+                    "r",
+                    "s",
+                    "t",
+                    "u",
+                    "v",
+                    "w",
+                    "x",
+                    "y",
+                    "z"
+                  ]
+                },
+                () => {
+                  scope.loadPicsFromServer();
+                }
+              )
+            : scope.setState({
+                qNum: scope.state.qNum + 1,
+                round: scope.state.round + 1,
+                pressed: [],
+                score: 0,
+                alphabet: [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e",
+                  "f",
+                  "g",
+                  "h",
+                  "i",
+                  "j",
+                  "k",
+                  "l",
+                  "m",
+                  "n",
+                  "o",
+                  "p",
+                  "q",
+                  "r",
+                  "s",
+                  "t",
+                  "u",
+                  "v",
+                  "w",
+                  "x",
+                  "y",
+                  "z"
+                ]
+              }),
+            () => {};
+        }, 1000);
       }
     });
+
     if (!found) {
       this.setState({
         score: this.state.score - 1
       });
     }
+    let letterInd = this.state.alphabet.findIndex(item => {
+      return item === letter;
+    });
+
+    let alphabetTemp = this.state.alphabet.splice(0);
+    alphabetTemp.splice(letterInd, 1);
+    this.setState({ alphabet: alphabetTemp });
     if (this.state.score < -13) {
       this.youLose();
     }
@@ -175,34 +335,69 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Container>
-      <Row>   <div className="App-header" >{"Web Scrape Hang Man Round " + (this.state.qNum + 1)}</div> </Row>
-     <Row>    
-     <Row >  <Hangman
-     word={this.state.weirdArray[this.state.qNum].word}
-     gameState={this.state.weirdArray[this.state.qNum].gameState}
-   /></Row>
-   <Row>  <Keyboard
-     pressed={this.state.pressed}
-     newGame={this.state.newGame}
-     handleLetterPress={this.handleLetterPress}
-     alphabet={this.state.alphabet}
-   /></Row>
-     <Col xs="6">  
-            <HangmanPic className={this.state.scoreClass} deathNo={this.state.score * -1} />
-           
-          </Col>
-         
-          <Col xs="6" maxWidth="50%"> <FlyingPicture
-            spinpic={spinpic}
-            pic={this.state.weirdArray[this.state.qNum].url}
-          /> </Col>
-         </Row>
-         <Row>
-        
-       </Row>
+        <Modal
+          isOpen={this.state.youLose}
+          toggle={this.continue}
+          className={this.props.className}
+        >
+          <ModalHeader toggle={this.toggle}>You Lose</ModalHeader>
+          <ModalBody>
+            <HangmanPic className={this.state.scoreClass} deathNo={15} />
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.continue}>
+              Continue
+            </Button>{" "}
+          </ModalFooter>
+        </Modal>
+        <Container>
+          <Row>
+            {" "}
+            <div className="App-header">
+              {"Web Scrape Hang Man Round " + this.state.round}
+            </div>{" "}
+          </Row>
 
-         <Row>   <div >{"Round " + (this.state.qNum + 1)}</div> </Row></Container>
+          <Row>
+            <Col>
+              {this.state.weirdArray[this.state.qNum] && (
+                <Hangman
+                  word={this.state.weirdArray[this.state.qNum].word}
+                  gameState={this.state.weirdArray[this.state.qNum].gameState}
+                />
+              )}{" "}
+            </Col>{" "}
+          </Row>
+          <Row>
+            <Col xs="12">
+              {" "}
+              <Keyboard
+                pressed={this.state.pressed}
+                newGame={this.state.newGame}
+                handleLetterPress={this.handleLetterPress}
+                alphabet={this.state.alphabet}
+              />
+            </Col>
+          </Row>
+          <Row>
+            {" "}
+            <Col xs="6">
+              <HangmanPic
+                className={this.state.scoreClass}
+                deathNo={this.state.score * -1}
+              />
+            </Col>
+            <Col xs="6" maxWidth="50%">
+              {" "}
+              <FlyingPicture
+                spinpic={spinpic}
+                pic={this.state.weirdArray[this.state.qNum].url}
+              />{" "}
+            </Col>
+          </Row>
+          <Row />
+          <Hangman word={this.state.pressed} gameState={this.state.pressed} />
+        </Container>
       </div>
     );
   }

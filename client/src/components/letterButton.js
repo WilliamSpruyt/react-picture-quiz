@@ -4,11 +4,9 @@ export default class LetterButton extends React.Component {
   constructor(props) {
     super(props);
      
-    this.clickHandler = this.clickHandler.bind(this);
+  
   }
-  clickHandler() {
-    this.setState({ isActive: false });
-  }
+   
   render() {
     return (
       <div

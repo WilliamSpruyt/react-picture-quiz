@@ -34,10 +34,7 @@ img {
    
 }
 
-.small-pic {
-   
- width:20%
-}
+ 
 
 .App-header {
   background-color: #222;
@@ -73,10 +70,18 @@ body{
   font-size: 50px;
   display: flex; /* or inline-flex */
   flex-direction: row;
-   
+  float: none;
+  margin: 0 auto;
+  justify-content:center;
   
+
  
+}
+
  
+HangmanPic{
+ width:100%;
+  height: auto;
 }
 
 #keyboard{
@@ -96,9 +101,7 @@ input{
   cursor: crosshair;
   text-align: center;
 }
-#FlyingP{
-  
-}
+ 
 .score{
 
   font-size: 60px;
@@ -169,7 +172,4 @@ input{
 
   }
 
-  imageloader-loaded{
-    max-width: 50%;
-  }
-  
+   
