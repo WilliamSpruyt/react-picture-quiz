@@ -357,7 +357,22 @@ class App extends Component {
               {"Web Scrape Hang Man Round " + this.state.round}
             </div>{" "}
           </Row>
-
+          <Row>
+          {" "}
+          <Col xs="6">
+            <HangmanPic
+              className={this.state.scoreClass}
+              deathNo={this.state.score * -1}
+            />
+          </Col>
+          <Col xs="6" maxWidth="50%">
+            {" "}
+            <FlyingPicture
+              spinpic={spinpic}
+              pic={this.state.weirdArray[this.state.qNum].url}
+            />{" "}
+          </Col>
+        </Row>
           <Row>
             <Col>
               {this.state.weirdArray[this.state.qNum] && (
@@ -379,22 +394,7 @@ class App extends Component {
               />
             </Col>
           </Row>
-          <Row>
-            {" "}
-            <Col xs="6">
-              <HangmanPic
-                className={this.state.scoreClass}
-                deathNo={this.state.score * -1}
-              />
-            </Col>
-            <Col xs="6" maxWidth="50%">
-              {" "}
-              <FlyingPicture
-                spinpic={spinpic}
-                pic={this.state.weirdArray[this.state.qNum].url}
-              />{" "}
-            </Col>
-          </Row>
+         
           <Row />
           <Hangman word={this.state.pressed} gameState={this.state.pressed} />
         </Container>
