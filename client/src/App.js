@@ -335,6 +335,7 @@ class App extends Component {
     if (this.state.score < -13) {
       this.youLose();
     }
+    return found;
   }
 
   render() {

@@ -13,7 +13,7 @@ export default class LetterButton extends React.Component {
         onClick={()=>{
           
            this.setState({clicked:true})
-           setTimeout(()=>{this.setState({clicked:false});this.props.handleLetterPress(this.props.letter)}
+           setTimeout(()=>{this.props.handleLetterPress(this.props.letter)}
            ,200)
                 
                  
