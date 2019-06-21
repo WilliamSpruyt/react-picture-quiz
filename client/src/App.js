@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import spinpic from "./spin.svg";
+import spinpic from "./spinSearching.svg";
 import "whatwg-fetch";
 import "./App.css";
-import Success from "./pictures/welcome.jpg";
-import SuccessPicture from "./components/SuccessPicture";
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 import Hangman from "./components/hangman";
 import FlyingPicture from "./components/flyIngPicture";
 import HangmanPic from "./components/hangmanPic";
@@ -180,6 +182,9 @@ class App extends Component {
             "y",
             "z"
           ]
+        },
+        () => {
+          this.loadPicsFromServer();
         })
       : this.setState({
           qNum: this.state.qNum + 1,

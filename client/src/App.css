@@ -10,7 +10,7 @@ HTML{
 .App-logo {
   animation: App-logo-spin infinite 2s linear;
   transform-origin: 50% 50%;
-  width: 200px;
+  
 }
 img {
   max-width:100%;
@@ -26,7 +26,7 @@ img {
 }
 
 .zApp-logo {
-  animation: App-logo-spin infinite 13s reverse ;
+  animation: App-logo-spin infinite 4s reverse ;
   transform-origin: 50% 50%;
 }
 @keyframes App-logo-start {
@@ -83,7 +83,8 @@ body{
  
 HangmanPic{
  width:100%;
-  height: auto;
+height: auto;
+ 
 }
 
 #keyboard{

@@ -7,7 +7,9 @@ export default class HangmanPic extends React.Component {
 
   render() {
     return (
-      <svg id="hangman" viewBox="0 0 500 700">
+      <svg id="hangman" viewBox="0 0 500 700" >
+      <rect stroke="black"
+      strokeWidth="2" width="500" height="700" style={{fill:"#dddddd",strokeWidth:"3"}} />
         {this.props.deathNo > 0 && (
           <line
           x1="20" y1="675" x2="475" y2="675"
@@ -21,6 +23,7 @@ export default class HangmanPic extends React.Component {
           x1="25" y1="675" x2="25" y2="25"
             stroke="black"
             strokeWidth="20"
+            strokeLinecap="round"
           />
         )}
         {this.props.deathNo > 2 && (

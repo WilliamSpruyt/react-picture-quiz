@@ -1,5 +1,5 @@
 import React from "react";
-import spin from './spin.svg'
+import spin from './spinSearching.svg'
 import "../App.css";
 
 export default class Spinner extends React.Component  {

@@ -15,6 +15,7 @@ export default class FlyingPicture extends React.Component {
   render() {
     return (
       <div > 
+      
    <ImageLoader 
     src={this.props.pic} 
      
