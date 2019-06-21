@@ -12,6 +12,16 @@ HTML{
   transform-origin: 50% 50%;
   
 }
+
+.buttonDrop{
+  
+  animation: App-logo-start  0.2s ease-in;
+  
+
+}
+
+ 
+
 img {
   max-width:100%;
   height: auto;
@@ -30,7 +40,7 @@ img {
   transform-origin: 50% 50%;
 }
 @keyframes App-logo-start {
-  from { transform:  scale(105)}
+  to {transform: translate(0,2em);}
    
 }
 

@@ -1,32 +1,33 @@
 import React from "react";
-
+import '../App.css'
 export default class LetterButton extends React.Component {
   constructor(props) {
     super(props);
-     
+     this.state={clicked:false}
   
   }
    
   render() {
     return (
-      <div
-        onClick={
-          (this.props.pressed.indexOf(this.props.letter)===-1)
-            ? () => {
-                this.props.handleLetterPress(this.props.letter);
+      <div className={(this.state.clicked)?"buttonDrop":null}
+        onClick={()=>{
+          
+           this.setState({clicked:true})
+           setTimeout(()=>{this.setState({clicked:false});this.props.handleLetterPress(this.props.letter)}
+           ,200)
+                
                  
-              }
-            : null
-        }
+             
+        }}
       >
-        <svg width="50" height="50">
+        <svg width="50" height="50" >
           <circle
             cx="25"
             cy="25"
             r={this.props.radius}
             stroke="none"
             strokeWidth="4"
-            fill={(this.props.pressed.indexOf(this.props.letter)===-1) ? this.props.backColour : "gray"}
+            fill={(!this.state.clicked) ? this.props.backColour : "gray"}
             color={(this.props.pressed.indexOf(this.props.letter)===-1) ? "black" : "silver"}
           />
           <text
