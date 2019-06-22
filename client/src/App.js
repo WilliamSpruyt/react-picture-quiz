@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import spinpic from "./spinSearching.svg";
+import spinpic from "./spin.svg";
 import "whatwg-fetch";
 import "./App.css";
 import {
