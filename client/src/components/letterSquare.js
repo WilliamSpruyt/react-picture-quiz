@@ -1,16 +1,16 @@
 import React from 'react';
-  
 
-export default class LetterSquare extends React.Component {
+
+const LetterSquare=(props)=>
      
-    render() {
+    {
 
         return (
-            <div onClick={this.clickHandler}>
-            <svg  width={this.props.side} height={this.props.side}>
+            <div >
+            <svg  width={props.side} height={props.side}>
               <rect
-                width={this.props.side}
-                height={this.props.side}
+                width={props.side}
+                height={props.side}
                 stroke="black"
                 strokeWidth="4"
                 fill="silver"
@@ -21,10 +21,10 @@ export default class LetterSquare extends React.Component {
                 textAnchor="middle"
                 alignmentBaseline="middle"
                 fontFamily="Verdana"
-                x={this.props.side/2}
-                y={this.props.side/2}
+                x={props.side/2}
+                y={props.side/2}
               >
-                {this.props.letter}
+                {props.letter}
               </text>
   
             </svg>
@@ -33,7 +33,7 @@ export default class LetterSquare extends React.Component {
         );
       }
 
+      export default LetterSquare ;
 
 
-}
  

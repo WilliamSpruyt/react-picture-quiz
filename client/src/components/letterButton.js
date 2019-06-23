@@ -9,11 +9,11 @@ export default class LetterButton extends React.Component {
    
   render() {
     return (
-      <div className={(this.state.clicked)?"buttonDrop":null}
+      <div className={(this.state.clicked)?((this.props.word.indexOf(this.props.letter)===-1)?"buttonDrop":"buttonFly"):null}
         onClick={()=>{
-          
+            console.log(this.props.word)
            this.setState({clicked:true})
-           setTimeout(()=>{this.props.handleLetterPress(this.props.letter)}
+           setTimeout(()=>{this.setState({clicked:false});this.props.handleLetterPress(this.props.letter)}
            ,200)
                 
                  
@@ -28,7 +28,7 @@ export default class LetterButton extends React.Component {
             stroke="none"
             strokeWidth="4"
             fill={(!this.state.clicked) ? this.props.backColour : "gray"}
-            color={(this.props.pressed.indexOf(this.props.letter)===-1) ? "black" : "silver"}
+             
           />
           <text
             fill="#000000"
@@ -38,7 +38,7 @@ export default class LetterButton extends React.Component {
             fontFamily="Verdana"
             x="25"
             y="25"
-            color={(this.props.pressed.indexOf(this.props.letter)===-1) ? "black" : "silver"}
+            
           >
             {this.props.letter}
           </text>

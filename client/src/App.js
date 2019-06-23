@@ -10,6 +10,7 @@ import {
 import Hangman from "./components/hangman";
 import FlyingPicture from "./components/flyIngPicture";
 import HangmanPic from "./components/hangmanPic";
+import DroppedButton from "./components/droppedButton"
 import {
   Container,
   Row,
@@ -392,17 +393,16 @@ class App extends Component {
           <Row>
             <Col xs="12">
               {" "}
-              <Keyboard
-                pressed={this.state.pressed}
-                newGame={this.state.newGame}
+           {this.state.weirdArray[this.state.qNum] &&   <Keyboard
+              word={this.state.weirdArray[this.state.qNum].word}
                 handleLetterPress={this.handleLetterPress}
                 alphabet={this.state.alphabet}
-              />
+              />}
             </Col>
           </Row>
          
           <Row />
-         <Hangman word={this.state.pressed} gameState={this.state.pressed} />
+         <Col Col xs="12"  className="Hangman"> {this.state.pressed.map((ele)=>{return <DroppedButton letter={ele}/>})} </Col>
         </Container>
       </div>
     );
