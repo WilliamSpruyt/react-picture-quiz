@@ -10,10 +10,10 @@
     "react": "^16.8.6",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.8.6",
-    "react-scripts": "1.1.5",
+    "react-scripts": "5.0.1",
     "react-transition-group": "^4.1.1",
     "reactstrap": "^8.0.0",
-    "simple-flexbox": "^1.2.0"
+    "simple-flexbox": "^2.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
